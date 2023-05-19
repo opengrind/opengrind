@@ -1,0 +1,36 @@
+@import url(https://fonts.bunny.net/css?family=inter:400|source-sans-pro:400,600);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.bg-form {
+  background-color: #f8fbfd;
+}
+
+.item-list:hover:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.item-list:last-child {
+  border-bottom: 0;
+}
+.item-list:hover:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    --tw-shadow: 2px 2px 0 rgb(242, 242, 245) !important;
+  }
+}
+
+.icon-search {
+  left: 8px;
+  top: 8px;
+}
