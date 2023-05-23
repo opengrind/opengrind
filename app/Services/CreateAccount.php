@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Arr;
 use App\Models\Account;
 use App\Models\EmailAddress;
 use App\Models\Organization;
@@ -57,6 +58,10 @@ class CreateAccount extends BaseService
         }
 
         if (User::where('slug', $this->slug)->exists()) {
+            throw new Exception(trans_key('This name already exists'));
+        }
+
+        if (in_array($this->slug, config('opengrind.blacklisted'))) {
             throw new Exception(trans_key('This name already exists'));
         }
     }

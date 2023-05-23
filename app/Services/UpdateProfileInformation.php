@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Organization;
+use Illuminate\Support\Str;
 use App\Models\User;
+use Exception;
 use Illuminate\Validation\ValidationException;
 
 class UpdateProfileInformation extends BaseService
@@ -10,6 +13,8 @@ class UpdateProfileInformation extends BaseService
     private array $data;
 
     private User $user;
+
+    private string $slug;
 
     /**
      * Get the validation rules that apply to the service.
@@ -37,19 +42,6 @@ class UpdateProfileInformation extends BaseService
         $this->user->username = $data['username'];
         $this->user->save();
 
-        // if ($oldEmail !== $data['email']) {
-        //     if (User::where('email', $data['email'])->exists()) {
-        //         throw ValidationException::withMessages([
-        //             'email' => __('This email has already been taken.'),
-        //         ]);
-        //     }
-
-        //     $user->email = $data['email'];
-        //     $user->email_verified_at = null;
-        //     $user->save();
-        //     $user->refresh()->sendEmailVerificationNotification();
-        // }
-
         return $this->user;
     }
 
@@ -58,19 +50,19 @@ class UpdateProfileInformation extends BaseService
         $this->validateRules($this->data);
 
         $this->user = User::findOrFail($this->data['user_id']);
-        // $oldEmail = $this->user->email;
 
-        // if ($oldEmail !== $this->data['email']) {
-        //     if (User::where('email', $this->data['email'])->exists()) {
-        //         throw ValidationException::withMessages([
-        //             'email' => __('This email has already been taken.'),
-        //         ]);
-        //     }
+        $this->slug = Str::slug($this->data['username']);
 
-        //     $this->user->email = $data['email'];
-        //     $this->user->email_verified_at = null;
-        //     $this->user->save();
-        //     $this->user->refresh()->sendEmailVerificationNotification();
-        // }
+        if (Organization::where('slug', $this->slug)->exists()) {
+            throw new Exception(trans_key('This name already exists'));
+        }
+
+        if (User::where('slug', $this->slug)->exists()) {
+            throw new Exception(trans_key('This name already exists'));
+        }
+
+        if (in_array($this->slug, config('opengrind.blacklisted'))) {
+            throw new Exception(trans_key('This name already exists'));
+        }
     }
 }

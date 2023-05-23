@@ -36,7 +36,7 @@ class UpdateProfileInformationTest extends TestCase
             'user_id' => $user->id,
             'first_name' => 'michael',
             'last_name' => 'scott',
-            'email' => 'michael.scott@gmail.com',
+            'username' => 'michael',
         ];
 
         $user = (new UpdateProfileInformation())->execute($request);
@@ -45,7 +45,7 @@ class UpdateProfileInformationTest extends TestCase
             'id' => $user->id,
             'first_name' => 'michael',
             'last_name' => 'scott',
-            'email' => 'michael.scott@gmail.com',
+            'username' => 'michael',
         ]);
 
         $this->assertInstanceOf(

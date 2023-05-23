@@ -28,7 +28,8 @@
         <x-input-error :messages="$errors->get('username')" class="mt-2" />
       </div>
 
-      <div class="flex items-center justify-between mb-4">
+      <!-- actions -->
+      <div class="flex items-center justify-between">
         <x-button-form wire:loading.attr="disabled" dusk="submit-button">
           {{ __('Save') }}
         </x-button-form>
