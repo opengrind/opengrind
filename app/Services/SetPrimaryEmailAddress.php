@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Mail\VerifyEmail;
 use App\Models\EmailAddress;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 
 class SetPrimaryEmailAddress extends BaseService
 {

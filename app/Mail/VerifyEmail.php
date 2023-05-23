@@ -43,16 +43,16 @@ class VerifyEmail extends Mailable
     public function content(): Content
     {
         $url = URL::temporarySignedRoute(
-            'verify-email', now()->addMinutes(30), [
+            'verification.verify', now()->addMinutes(30), [
                 'id' => $this->emailAddress->id,
                 'hash' => sha1($this->emailAddress->email),
             ]
         );
 
         return new Content(
-            view: 'emails.account.verify-email',
+            markdown: 'emails.account.verify-email',
             with: [
-                'link' => $url,
+                'url' => $url,
             ],
         );
     }

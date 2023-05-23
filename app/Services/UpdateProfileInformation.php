@@ -20,7 +20,7 @@ class UpdateProfileInformation extends BaseService
             'user_id' => 'required|integer|exists:users,id',
             'first_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255',
+            'username' => 'required|unique:users,username|string|max:255|alpha_dash',
         ];
     }
 
@@ -32,24 +32,25 @@ class UpdateProfileInformation extends BaseService
         $this->data = $data;
         $this->validate();
 
-        $user->first_name = $data['first_name'];
-        $user->last_name = $data['last_name'];
-        $user->save();
+        $this->user->first_name = $data['first_name'];
+        $this->user->last_name = $data['last_name'];
+        $this->user->username = $data['username'];
+        $this->user->save();
 
-        if ($oldEmail !== $data['email']) {
-            if (User::where('email', $data['email'])->exists()) {
-                throw ValidationException::withMessages([
-                    'email' => __('This email has already been taken.'),
-                ]);
-            }
+        // if ($oldEmail !== $data['email']) {
+        //     if (User::where('email', $data['email'])->exists()) {
+        //         throw ValidationException::withMessages([
+        //             'email' => __('This email has already been taken.'),
+        //         ]);
+        //     }
 
-            $user->email = $data['email'];
-            $user->email_verified_at = null;
-            $user->save();
-            $user->refresh()->sendEmailVerificationNotification();
-        }
+        //     $user->email = $data['email'];
+        //     $user->email_verified_at = null;
+        //     $user->save();
+        //     $user->refresh()->sendEmailVerificationNotification();
+        // }
 
-        return $user;
+        return $this->user;
     }
 
     private function validate(): void
@@ -57,19 +58,19 @@ class UpdateProfileInformation extends BaseService
         $this->validateRules($this->data);
 
         $this->user = User::findOrFail($this->data['user_id']);
-        $oldEmail = $this->user->email;
+        // $oldEmail = $this->user->email;
 
-        if ($oldEmail !== $this->data['email']) {
-            if (User::where('email', $this->data['email'])->exists()) {
-                throw ValidationException::withMessages([
-                    'email' => __('This email has already been taken.'),
-                ]);
-            }
+        // if ($oldEmail !== $this->data['email']) {
+        //     if (User::where('email', $this->data['email'])->exists()) {
+        //         throw ValidationException::withMessages([
+        //             'email' => __('This email has already been taken.'),
+        //         ]);
+        //     }
 
-            $this->user->email = $data['email'];
-            $this->user->email_verified_at = null;
-            $this->user->save();
-            $this->user->refresh()->sendEmailVerificationNotification();
-        }
+        //     $this->user->email = $data['email'];
+        //     $this->user->email_verified_at = null;
+        //     $this->user->save();
+        //     $this->user->refresh()->sendEmailVerificationNotification();
+        // }
     }
 }

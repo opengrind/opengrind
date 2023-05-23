@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Layout\Web\ViewHelpers;
+namespace App\Http\ViewHelpers\Layout;
 
 use App\Models\User;
 use Carbon\Carbon;
@@ -32,11 +32,11 @@ class LayoutViewHelper
             'currentLocale' => App::currentLocale(),
             'locales' => $localesCollection,
             'currentYear' => Carbon::now()->format('Y'),
-            'organization' => $organization ? [
-                'name' => $organization->name,
-            ] : null,
+            'organization' => [
+                'name' => $organization?->name,
+            ],
             'url' => [
-                'search' => route('search.show'),
+                'search' => null,
             ],
         ];
     }

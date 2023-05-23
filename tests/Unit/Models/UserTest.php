@@ -86,7 +86,6 @@ class UserTest extends TestCase
 
         $this->assertNull($user->email);
 
-
     }
 
     /** @test */

@@ -1,7 +1,7 @@
 <div class="md:grid md:grid-cols-3 md:gap-16">
   <div class="md:col-span-1">
     <h2 class="text-lg mb-2 font-bold">{{ __('Your user profile') }}</h2>
-    <p>{{ __('Everyone in the company will be able to see these information.') }}</p>
+    <p>{{ __('Only your nickname will be visible by anyone. Your name will remain private unless you make it public inside an organization - in that case, it would be visible in this organization.') }}</p>
   </div>
 
   <div class="md:mt-0 md:col-span-2">
@@ -20,12 +20,12 @@
         <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
       </div>
 
-      <!-- email -->
-      <div class="w-full max-w-lg mb-6">
-        <x-input-label for="email" :value="__('Email')" />
-        <x-text-input wire:model.defer="email" id="email" dusk="email-field" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" />
-        <x-input-help>{{ __('We\'ll send you an email to confirm your new address if you change it.') }}</x-input-help>
-        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+      <!-- username -->
+      <div class="w-full max-w-lg mb-4">
+        <x-input-label for="username" :value="__('Username')" />
+        <x-text-input wire:model.defer="username" id="username" dusk="last-name-field" class="block mt-1 w-full" type="text" name="username" :value="old('username')" autocomplete="username" />
+        <x-input-help>{{ trans('No blank space and no special characters. It will be used to identify you on OpenGrind.') }}</x-input-help>
+        <x-input-error :messages="$errors->get('username')" class="mt-2" />
       </div>
 
       <div class="flex items-center justify-between mb-4">

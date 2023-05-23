@@ -2,7 +2,7 @@
 
 namespace App\View\Components;
 
-use App\Domains\Layout\Web\ViewHelpers\LayoutViewHelper;
+use App\Http\ViewHelpers\Layout\LayoutViewHelper;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 

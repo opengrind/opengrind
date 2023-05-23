@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Services;
 
-use App\Mail\AccountCreated;
 use App\Models\Organization;
 use App\Models\User;
 use App\Services\CreateAccount;

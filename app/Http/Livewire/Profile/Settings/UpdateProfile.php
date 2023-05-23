@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Settings\Profile;
+namespace App\Http\Livewire\Profile\Settings;
 
-use App\Domains\Settings\ManageProfile\Services\UpdateProfileInformation;
+use App\Services\UpdateProfileInformation;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 
@@ -14,18 +14,18 @@ class UpdateProfile extends Component
 
     public string $lastName = '';
 
-    public string $email = '';
+    public string $username = '';
 
     public function mount(array $view)
     {
         $this->firstName = $view['firstName'] ?? '';
         $this->lastName = $view['lastName'] ?? '';
-        $this->email = $view['email'] ?? '';
+        $this->username = $view['username'] ?? '';
     }
 
     public function render()
     {
-        return view('settings.profile.livewire-update-profile');
+        return view('profile.settings.livewire-update-profile');
     }
 
     public function store(): void
@@ -34,7 +34,7 @@ class UpdateProfile extends Component
             'user_id' => auth()->user()->id,
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
-            'email' => $this->email,
+            'username' => $this->username,
         ]);
 
         $this->notification()->success(

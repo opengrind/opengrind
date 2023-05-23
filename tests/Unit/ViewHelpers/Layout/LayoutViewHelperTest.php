@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Domains\Layout\Web\ViewHelpers;
+namespace Tests\Unit\ViewHelpers\Layout;
 
-use App\Domains\Layout\Web\ViewHelpers\LayoutViewHelper;
+use App\Http\ViewHelpers\Layout\LayoutViewHelper;
 use App\Models\Member;
 use App\Models\Organization;
 use Carbon\Carbon;
@@ -68,7 +68,8 @@ class LayoutViewHelperTest extends TestCase
         // );
         $this->assertEquals(
             [
-                'search' => env('APP_URL').'/search',
+                //'search' => env('APP_URL').'/search',
+                'search' => null,
             ],
             $array['url']
         );

@@ -1,38 +1,30 @@
 <?php
 
-namespace App\Domains\Auth\Web\Controllers;
+namespace App\Http\Controllers\Auth;
 
-use App\Domains\Auth\Services\CreateAccount;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Services\CreateAccount;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class RegisteredUserController extends Controller
+class RegisterController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
     public function create(): View
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request): RedirectResponse
     {
         $user = (new CreateAccount())->execute([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
+            'username' => $request->input('username'),
         ]);
 
         auth()->login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('verification.notice');
     }
 }
