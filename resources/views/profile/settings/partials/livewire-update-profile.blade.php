@@ -1,10 +1,10 @@
 <div class="md:grid md:grid-cols-3 md:gap-16">
   <div class="md:col-span-1">
     <h2 class="text-lg mb-2 font-bold">{{ __('Your user profile') }}</h2>
-    <p>{{ __('Only your nickname will be visible by anyone. Your name will remain private unless you make it public inside an organization - in that case, it would be visible in this organization.') }}</p>
+    <p class="text-sm">{{ __('Only your nickname will be visible to everyone. Your name will stay private unless you make it public within an organization – in that case, it will be visible within that organization.') }}</p>
   </div>
 
-  <div class="md:mt-0 md:col-span-2">
+  <div class=" md:mt-0 md:col-span-2">
     <form wire:submit.prevent="store">
       <!-- first name -->
       <div class="w-full max-w-lg mb-4">
@@ -24,7 +24,7 @@
       <div class="w-full max-w-lg mb-4">
         <x-input-label for="username" :value="__('Username')" />
         <x-text-input wire:model.defer="username" id="username" dusk="last-name-field" class="block mt-1 w-full" type="text" name="username" :value="old('username')" autocomplete="username" />
-        <x-input-help>{{ trans('No blank space and no special characters. It will be used to identify you on OpenGrind.') }}</x-input-help>
+        <x-input-help>{{ trans('No spaces, punctuation, or special characters allowed. This will be used to identify you on OpenGrind.') }}</x-input-help>
         <x-input-error :messages="$errors->get('username')" class="mt-2" />
       </div>
 

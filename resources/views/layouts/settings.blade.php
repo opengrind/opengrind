@@ -12,10 +12,7 @@
             <x-link :route="route('home.index')">{{ __('Back to home') }}</x-link>
           </div>
           <div class="flex items-center justify-center w-full space-x-1.5 font-bold">
-            {{ __('Personal account settings') }}
-          </div>
-          <div class="flex justify-end w-[300px]">
-            &nbsp;
+            {{ __('Settings') }}
           </div>
         </div>
       </div>
@@ -23,7 +20,7 @@
       <!-- body -->
       <div class="w-full rounded-b-lg mx-auto bg-white max-w-7xl ">
         <div class="flex w-full divide-x divide-slate-200">
-          <nav class="pt-5 max-w-[25%] space-y-6 sidebar whitespace-nowrap p-3">
+          <nav class="pt-5 min-w-[15%] max-w-[25%] space-y-6 sidebar whitespace-nowrap p-3">
             <ul>
               <li class="uppercase text-xs mb-2 font-light">{{ __('User profile') }}</li>
 

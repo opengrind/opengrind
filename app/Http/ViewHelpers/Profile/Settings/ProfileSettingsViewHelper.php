@@ -1705,7 +1705,9 @@ class ProfileSettingsViewHelper
             'timezone' => $user->timezone,
             'locale' => $user->locale,
             'agePreferences' => $user->age_preferences,
+            'timezone' => $user->timezone,
             'timezones' => $timezones,
+            'bornAt' => $user?->born_at->format('Y-m-d'),
         ];
     }
 }

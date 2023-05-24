@@ -3,38 +3,35 @@
 namespace App\Http\Livewire\Profile\Settings;
 
 use App\Services\UpdateProfileInformation;
+use App\Services\UpdateUserDateOfBirth;
+use App\Services\UpdateUserTimezone;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 
-class UpdateProfile extends Component
+class UpdateDateOfBirth extends Component
 {
     use Actions;
 
-    public string $firstName = '';
-
-    public string $lastName = '';
-
-    public string $username = '';
+    public ?string $bornAt = '';
+    public string $agePreferences = '';
 
     public function mount(array $view)
     {
-        $this->firstName = $view['firstName'] ?? '';
-        $this->lastName = $view['lastName'] ?? '';
-        $this->username = $view['username'] ?? '';
+        $this->bornAt = $view['bornAt'] ?? '';
+        $this->agePreferences = $view['agePreferences'] ?? '';
     }
 
     public function render()
     {
-        return view('profile.settings.partials.livewire-update-profile');
+        return view('profile.settings.partials.livewire-update-user-date-of-birth');
     }
 
     public function store(): void
     {
-        (new UpdateProfileInformation())->execute([
+        (new UpdateUserDateOfBirth())->execute([
             'user_id' => auth()->user()->id,
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'username' => $this->username,
+            'born_at' => $this->bornAt,
+            'age_preferences' => $this->agePreferences,
         ]);
 
         $this->notification([

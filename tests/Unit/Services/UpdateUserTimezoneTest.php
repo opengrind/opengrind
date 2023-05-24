@@ -3,17 +3,17 @@
 namespace Tests\Unit\Services;
 
 use App\Models\User;
-use App\Services\UpdateProfileInformation;
+use App\Services\UpdateUserTimezone;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
-class UpdateProfileInformationTest extends TestCase
+class UpdateUserTimezoneTest extends TestCase
 {
     use DatabaseTransactions;
 
     /** @test */
-    public function it_updates_the_information_of_the_user(): void
+    public function it_updates_the_timezone_of_the_user(): void
     {
         $user = User::factory()->create();
         $this->executeService($user);
@@ -27,19 +27,17 @@ class UpdateProfileInformationTest extends TestCase
         ];
 
         $this->expectException(ValidationException::class);
-        (new UpdateProfileInformation())->execute($request);
+        (new UpdateUserTimezone())->execute($request);
     }
 
     private function executeService(User $user): void
     {
         $request = [
             'user_id' => $user->id,
-            'first_name' => 'michael',
-            'last_name' => 'scott',
-            'username' => 'michael',
+            'timezone' => '+1',
         ];
 
-        $user = (new UpdateProfileInformation())->execute($request);
+        $user = (new UpdateUserTimezone())->execute($request);
 
         $this->assertInstanceOf(
             User::class,
@@ -48,9 +46,7 @@ class UpdateProfileInformationTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
-            'first_name' => 'michael',
-            'last_name' => 'scott',
-            'username' => 'michael',
+            'timezone' => '+1',
         ]);
     }
 }
