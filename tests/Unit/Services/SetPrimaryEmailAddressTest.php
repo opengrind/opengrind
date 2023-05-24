@@ -2,13 +2,9 @@
 
 namespace Tests\Unit\Services;
 
-use App\Mail\AccountCreated;
 use App\Models\EmailAddress;
-use App\Models\Organization;
 use App\Models\User;
-use App\Services\CreateAccount;
 use App\Services\SetPrimaryEmailAddress;
-use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Mail;

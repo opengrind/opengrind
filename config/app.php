@@ -185,6 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Amirami\Localizator\ServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e7599967539253262f82a91ff5a2356",
+    "content-hash": "454415db0693e8779658e15c8114e08c",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -210,6 +210,153 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "codezero/browser-locale",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codezero-be/browser-locale.git",
+                "reference": "5dc1b89c8dcaece285b2ebb69ebdc783144e4cab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codezero-be/browser-locale/zipball/5dc1b89c8dcaece285b2ebb69ebdc783144e4cab",
+                "reference": "5dc1b89c8dcaece285b2ebb69ebdc783144e4cab",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0|^8.0"
+            },
+            "require-dev": {
+                "illuminate/support": "^5.5|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "mockery/mockery": "^1.3.3",
+                "phpunit/phpunit": "^6.0|^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CodeZero\\BrowserLocale\\Laravel\\BrowserLocaleServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CodeZero\\BrowserLocale\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Vermeyen",
+                    "email": "ivan@codezero.be"
+                }
+            ],
+            "description": "Get the most preferred locales from your visitor's browser.",
+            "keywords": [
+                "browser",
+                "country",
+                "detect",
+                "language",
+                "locale",
+                "php",
+                "website"
+            ],
+            "support": {
+                "issues": "https://github.com/codezero-be/browser-locale/issues",
+                "source": "https://github.com/codezero-be/browser-locale/tree/3.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/ivanvermeyen",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/ivanvermeyen",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2023-02-03T13:33:21+00:00"
+        },
+        {
+            "name": "codezero/laravel-localizer",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codezero-be/laravel-localizer.git",
+                "reference": "853ce4a78d0c446a49b6b8e4437aaad04ff0afeb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codezero-be/laravel-localizer/zipball/853ce4a78d0c446a49b6b8e4437aaad04ff0afeb",
+                "reference": "853ce4a78d0c446a49b6b8e4437aaad04ff0afeb",
+                "shasum": ""
+            },
+            "require": {
+                "codezero/browser-locale": "^3.0",
+                "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.2.5|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CodeZero\\Localizer\\LocalizerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CodeZero\\Localizer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Vermeyen",
+                    "email": "ivan@codezero.be"
+                }
+            ],
+            "description": "Automatically detect and set an app locale that matches your visitor's preference.",
+            "keywords": [
+                "browser",
+                "cookie",
+                "country",
+                "detect",
+                "language",
+                "laravel",
+                "locale",
+                "localization",
+                "php",
+                "session"
+            ],
+            "support": {
+                "issues": "https://github.com/codezero-be/laravel-localizer/issues",
+                "source": "https://github.com/codezero-be/laravel-localizer/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/ivanvermeyen",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/ivanvermeyen",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2023-03-24T09:36:59+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -717,21 +864,21 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.6.1",
+            "version": "7.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "8444a2bacf1960bc6a2b62ed86b8e72e11eebe51"
+                "reference": "fb7566caccf22d74d1ab270de3551f72a58399f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8444a2bacf1960bc6a2b62ed86b8e72e11eebe51",
-                "reference": "8444a2bacf1960bc6a2b62ed86b8e72e11eebe51",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/fb7566caccf22d74d1ab270de3551f72a58399f5",
+                "reference": "fb7566caccf22d74d1ab270de3551f72a58399f5",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/promises": "^1.5",
+                "guzzlehttp/promises": "^1.5.3 || ^2.0",
                 "guzzlehttp/psr7": "^1.9.1 || ^2.4.5",
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0",
@@ -743,7 +890,8 @@
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.8.1",
                 "ext-curl": "*",
-                "php-http/client-integration-tests": "^3.0",
+                "php-http/client-integration-tests": "dev-master#2c025848417c1135031fdf9c728ee53d0a7ceaee as 3.0.999",
+                "php-http/message-factory": "^1.1",
                 "phpunit/phpunit": "^8.5.29 || ^9.5.23",
                 "psr/log": "^1.1 || ^2.0 || ^3.0"
             },
@@ -822,7 +970,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.6.1"
+                "source": "https://github.com/guzzle/guzzle/tree/7.7.0"
             },
             "funding": [
                 {
@@ -838,38 +986,37 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-15T20:43:01+00:00"
+            "time": "2023-05-21T14:04:53+00:00"
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.5.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "b94b2807d85443f9719887892882d0329d1e2598"
+                "reference": "3a494dc7dc1d7d12e511890177ae2d0e6c107da6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/b94b2807d85443f9719887892882d0329d1e2598",
-                "reference": "b94b2807d85443f9719887892882d0329d1e2598",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/3a494dc7dc1d7d12e511890177ae2d0e6c107da6",
+                "reference": "3a494dc7dc1d7d12e511890177ae2d0e6c107da6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5"
+                "php": "^7.2.5 || ^8.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^4.4 || ^5.1"
+                "bamarni/composer-bin-plugin": "^1.8.1",
+                "phpunit/phpunit": "^8.5.29 || ^9.5.23"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5-dev"
+                "bamarni-bin": {
+                    "bin-links": true,
+                    "forward-command": false
                 }
             },
             "autoload": {
-                "files": [
-                    "src/functions_include.php"
-                ],
                 "psr-4": {
                     "GuzzleHttp\\Promise\\": "src/"
                 }
@@ -906,7 +1053,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/1.5.2"
+                "source": "https://github.com/guzzle/promises/tree/2.0.0"
             },
             "funding": [
                 {
@@ -922,7 +1069,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-28T14:55:35+00:00"
+            "time": "2023-05-21T13:50:22+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1126,16 +1273,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.11.0",
+            "version": "v10.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "21a5b6d9b669f32c10cc8ba776511b5f62599fea"
+                "reference": "9e6dcff23ab1d4b522bef56074c31625cf077576"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/21a5b6d9b669f32c10cc8ba776511b5f62599fea",
-                "reference": "21a5b6d9b669f32c10cc8ba776511b5f62599fea",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9e6dcff23ab1d4b522bef56074c31625cf077576",
+                "reference": "9e6dcff23ab1d4b522bef56074c31625cf077576",
                 "shasum": ""
             },
             "require": {
@@ -1322,7 +1469,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-05-16T13:59:23+00:00"
+            "time": "2023-05-23T18:04:16+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2412,16 +2559,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.4",
+            "version": "v4.15.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
+                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
-                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/11e2663a5bc9db5d714eedb4277ee300403b4a9e",
+                "reference": "11e2663a5bc9db5d714eedb4277ee300403b4a9e",
                 "shasum": ""
             },
             "require": {
@@ -2462,9 +2609,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.5"
             },
-            "time": "2023-03-05T19:49:14+00:00"
+            "time": "2023-05-19T20:20:00+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -2993,16 +3140,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.17",
+            "version": "v0.11.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "3dc5d4018dabd80bceb8fe1e3191ba8460569f0a"
+                "reference": "4f00ee9e236fa6a48f4560d1300b9c961a70a7ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/3dc5d4018dabd80bceb8fe1e3191ba8460569f0a",
-                "reference": "3dc5d4018dabd80bceb8fe1e3191ba8460569f0a",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4f00ee9e236fa6a48f4560d1300b9c961a70a7ec",
+                "reference": "4f00ee9e236fa6a48f4560d1300b9c961a70a7ec",
                 "shasum": ""
             },
             "require": {
@@ -3063,9 +3210,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.17"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.18"
             },
-            "time": "2023-05-05T20:02:42+00:00"
+            "time": "2023-05-23T02:31:11+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -3291,6 +3438,86 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "stichoza/google-translate-php",
+            "version": "v5.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stichoza/google-translate-php.git",
+                "reference": "7f528ab7e8dad78d0cfa261e4a4cac1b187f63df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stichoza/google-translate-php/zipball/7f528ab7e8dad78d0cfa261e4a4cac1b187f63df",
+                "reference": "7f528ab7e8dad78d0cfa261e4a4cac1b187f63df",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5.10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stichoza\\GoogleTranslate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Levan Velijanashvili",
+                    "email": "me@stichoza.com"
+                }
+            ],
+            "description": "Free Google Translate API PHP Package",
+            "homepage": "https://github.com/Stichoza/google-translate-php",
+            "keywords": [
+                "google",
+                "php",
+                "translate",
+                "translating",
+                "translator"
+            ],
+            "support": {
+                "issues": "https://github.com/Stichoza/google-translate-php/issues",
+                "source": "https://github.com/Stichoza/google-translate-php/tree/v5.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://btc.com/bc1qc25j4x7yahghm8nnn6lypnw59nptylsw32nkfl",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.paypal.me/stichoza",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/stichoza",
+                    "type": "ko_fi"
+                },
+                {
+                    "url": "https://liberapay.com/stichoza",
+                    "type": "liberapay"
+                },
+                {
+                    "url": "https://opencollective.com/stichoza",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://www.patreon.com/stichoza",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-12-01T16:51:22+00:00"
         },
         {
             "name": "symfony/console",
@@ -5833,6 +6060,84 @@
     ],
     "packages-dev": [
         {
+            "name": "amirami/localizator",
+            "version": "v0.12.1-alpha",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amiranagram/localizator.git",
+                "reference": "4bfa8cd15b21c264c981b039ac27b479050f84f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amiranagram/localizator/zipball/4bfa8cd15b21c264c981b039ac27b479050f84f4",
+                "reference": "4bfa8cd15b21c264c981b039ac27b479050f84f4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/config": "^6.0|^8.0|^9.0|^10.0",
+                "illuminate/console": "^6.0|^8.0|^9.0|^10.0",
+                "illuminate/filesystem": "^6.0|^8.0|^9.0|^10.0",
+                "illuminate/support": "^6.0|^8.0|^9.0|^10.0",
+                "php": "^7.2.5|^8.0",
+                "symfony/finder": "^4.4|^5.1|^6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench": "^4.0|^6.6|^7.0|^8.0",
+                "phpunit/phpunit": "^8.5|^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Amirami\\Localizator\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Amirami\\Localizator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Amir Rami",
+                    "email": "me@amirrami.com",
+                    "homepage": "https://amirrami.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Localizator is a small tool for Laravel that gives you the ability to extract untranslated strings from project files. It works using the artisan command line and the provided localize command.",
+            "homepage": "https://github.com/amiranagram/localizator",
+            "support": {
+                "issues": "https://github.com/amiranagram/localizator/issues",
+                "source": "https://github.com/amiranagram/localizator/tree/v0.12.1-alpha"
+            },
+            "funding": [
+                {
+                    "url": "https://m.do.co/c/f38828dd20f8",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.buymeacoffee.com/amirami/",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/amiranagram",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-04-24T05:41:34+00:00"
+        },
+        {
             "name": "amphp/amp",
             "version": "v2.6.2",
             "source": {
@@ -7895,22 +8200,22 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v8.5.3",
+            "version": "v8.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "69d47fba51b5a978d09f856834f3348e84356c91"
+                "reference": "6c00e046147d7ce1586f279e87139217aaa04bab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/69d47fba51b5a978d09f856834f3348e84356c91",
-                "reference": "69d47fba51b5a978d09f856834f3348e84356c91",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/6c00e046147d7ce1586f279e87139217aaa04bab",
+                "reference": "6c00e046147d7ce1586f279e87139217aaa04bab",
                 "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2.2",
                 "fakerphp/faker": "^1.21",
-                "laravel/framework": ">=10.8.0 <10.12.0",
+                "laravel/framework": ">=10.8.0 <10.13.0",
                 "mockery/mockery": "^1.5.1",
                 "orchestra/testbench-core": ">=8.5.0 <8.6.0",
                 "php": "^8.1",
@@ -7944,9 +8249,9 @@
             ],
             "support": {
                 "issues": "https://github.com/orchestral/testbench/issues",
-                "source": "https://github.com/orchestral/testbench/tree/v8.5.3"
+                "source": "https://github.com/orchestral/testbench/tree/v8.5.4"
             },
-            "time": "2023-05-16T11:46:44+00:00"
+            "time": "2023-05-24T00:44:58+00:00"
         },
         {
             "name": "orchestra/testbench-core",
@@ -8572,16 +8877,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "10.1.1",
+            "version": "10.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "884a0da7f9f46f28b2cb69134217fd810b793974"
+                "reference": "db1497ec8dd382e82c962f7abbe0320e4882ee4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/884a0da7f9f46f28b2cb69134217fd810b793974",
-                "reference": "884a0da7f9f46f28b2cb69134217fd810b793974",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/db1497ec8dd382e82c962f7abbe0320e4882ee4e",
+                "reference": "db1497ec8dd382e82c962f7abbe0320e4882ee4e",
                 "shasum": ""
             },
             "require": {
@@ -8638,7 +8943,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.1"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.2"
             },
             "funding": [
                 {
@@ -8646,7 +8951,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-17T12:15:40+00:00"
+            "time": "2023-05-22T09:04:27+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -11060,16 +11365,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "5.11.0",
+            "version": "5.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "c9b192ab8400fdaf04b2b13d110575adc879aa90"
+                "reference": "f90118cdeacd0088e7215e64c0c99ceca819e176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/c9b192ab8400fdaf04b2b13d110575adc879aa90",
-                "reference": "c9b192ab8400fdaf04b2b13d110575adc879aa90",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/f90118cdeacd0088e7215e64c0c99ceca819e176",
+                "reference": "f90118cdeacd0088e7215e64c0c99ceca819e176",
                 "shasum": ""
             },
             "require": {
@@ -11160,9 +11465,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/5.11.0"
+                "source": "https://github.com/vimeo/psalm/tree/5.12.0"
             },
-            "time": "2023-05-04T21:35:44+00:00"
+            "time": "2023-05-22T21:19:03+00:00"
         },
         {
             "name": "zbateson/mail-mime-parser",
@@ -11373,8 +11678,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "amirami/localizator": 15
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

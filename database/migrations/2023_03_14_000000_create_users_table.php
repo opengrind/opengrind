@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('password');
+            $table->string('password', 60);
             $table->string('locale')->default('en');
             $table->string('timezone')->default('UTC');
             $table->datetime('born_at')->nullable();

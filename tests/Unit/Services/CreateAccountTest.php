@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Services;
 
-use App\Mail\AccountCreated;
 use App\Models\Organization;
 use App\Models\User;
 use App\Services\CreateAccount;
 use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
@@ -50,6 +50,15 @@ class CreateAccountTest extends TestCase
         Organization::factory()->create([
             'slug' => 'johnny',
         ]);
+
+        $this->expectException(Exception::class);
+        $this->executeService();
+    }
+
+    /** @test */
+    public function it_fails_if_slug_is_part_of_the_blacklisted_list(): void
+    {
+        Config::set('opengrind.blacklisted', ['johnny']);
 
         $this->expectException(Exception::class);
         $this->executeService();

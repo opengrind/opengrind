@@ -2,14 +2,10 @@
 
 namespace Tests\Unit\Services;
 
-use App\Mail\AccountCreated;
 use App\Mail\VerifyEmail;
 use App\Models\EmailAddress;
-use App\Models\Organization;
 use App\Models\User;
-use App\Services\CreateAccount;
 use App\Services\CreateUserEmailAddress;
-use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;

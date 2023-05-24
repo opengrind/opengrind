@@ -2,21 +2,23 @@
 
 namespace App\Services;
 
-use App\Mail\AccountCreated;
+use Illuminate\Support\Arr;
 use App\Models\Account;
 use App\Models\EmailAddress;
 use App\Models\Organization;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CreateAccount extends BaseService
 {
     private User $user;
+
     private EmailAddress $emailAddress;
+
     private array $data;
+
     private string $slug;
 
     /**
@@ -27,7 +29,7 @@ class CreateAccount extends BaseService
         return [
             'email' => 'required|unique:email_addresses,email|email|max:255',
             'password' => 'required|min:6|max:60',
-            'username' => 'required|unique:users,username|string|max:255',
+            'username' => 'required|unique:users,username|string|max:255|alpha_dash',
         ];
     }
 
@@ -56,6 +58,10 @@ class CreateAccount extends BaseService
         }
 
         if (User::where('slug', $this->slug)->exists()) {
+            throw new Exception(trans_key('This name already exists'));
+        }
+
+        if (in_array($this->slug, config('opengrind.blacklisted'))) {
             throw new Exception(trans_key('This name already exists'));
         }
     }

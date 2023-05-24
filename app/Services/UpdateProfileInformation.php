@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Organization;
+use Illuminate\Support\Str;
 use App\Models\User;
+use Exception;
 use Illuminate\Validation\ValidationException;
 
 class UpdateProfileInformation extends BaseService
@@ -10,6 +13,8 @@ class UpdateProfileInformation extends BaseService
     private array $data;
 
     private User $user;
+
+    private string $slug;
 
     /**
      * Get the validation rules that apply to the service.
@@ -20,7 +25,7 @@ class UpdateProfileInformation extends BaseService
             'user_id' => 'required|integer|exists:users,id',
             'first_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255',
+            'username' => 'required|string|max:255|alpha_dash',
         ];
     }
 
@@ -32,24 +37,13 @@ class UpdateProfileInformation extends BaseService
         $this->data = $data;
         $this->validate();
 
-        $user->first_name = $data['first_name'];
-        $user->last_name = $data['last_name'];
-        $user->save();
+        $this->user->first_name = $data['first_name'];
+        $this->user->last_name = $data['last_name'];
+        $this->user->username = $data['username'];
+        $this->user->slug = $this->slug;
+        $this->user->save();
 
-        if ($oldEmail !== $data['email']) {
-            if (User::where('email', $data['email'])->exists()) {
-                throw ValidationException::withMessages([
-                    'email' => __('This email has already been taken.'),
-                ]);
-            }
-
-            $user->email = $data['email'];
-            $user->email_verified_at = null;
-            $user->save();
-            $user->refresh()->sendEmailVerificationNotification();
-        }
-
-        return $user;
+        return $this->user;
     }
 
     private function validate(): void
@@ -57,19 +51,29 @@ class UpdateProfileInformation extends BaseService
         $this->validateRules($this->data);
 
         $this->user = User::findOrFail($this->data['user_id']);
-        $oldEmail = $this->user->email;
 
-        if ($oldEmail !== $this->data['email']) {
-            if (User::where('email', $this->data['email'])->exists()) {
-                throw ValidationException::withMessages([
-                    'email' => __('This email has already been taken.'),
-                ]);
-            }
+        $this->slug = Str::slug($this->data['username']);
 
-            $this->user->email = $data['email'];
-            $this->user->email_verified_at = null;
-            $this->user->save();
-            $this->user->refresh()->sendEmailVerificationNotification();
+        if ($this->user->username === $this->data['username']) {
+            return;
+        }
+
+        if (Organization::where('slug', $this->slug)->exists()) {
+            throw ValidationException::withMessages([
+                'username' => __('This name already exists'),
+            ]);
+        }
+
+        if (User::where('slug', $this->slug)->exists()) {
+            throw ValidationException::withMessages([
+                'username' => __('This name already exists'),
+            ]);
+        }
+
+        if (in_array($this->slug, config('opengrind.blacklisted'))) {
+            throw ValidationException::withMessages([
+                'username' => __('This name already exists'),
+            ]);
         }
     }
 }

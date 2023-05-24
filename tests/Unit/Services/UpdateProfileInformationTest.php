@@ -36,21 +36,21 @@ class UpdateProfileInformationTest extends TestCase
             'user_id' => $user->id,
             'first_name' => 'michael',
             'last_name' => 'scott',
-            'email' => 'michael.scott@gmail.com',
+            'username' => 'michael',
         ];
 
         $user = (new UpdateProfileInformation())->execute($request);
-
-        $this->assertDatabaseHas('users', [
-            'id' => $user->id,
-            'first_name' => 'michael',
-            'last_name' => 'scott',
-            'email' => 'michael.scott@gmail.com',
-        ]);
 
         $this->assertInstanceOf(
             User::class,
             $user
         );
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'first_name' => 'michael',
+            'last_name' => 'scott',
+            'username' => 'michael',
+        ]);
     }
 }
