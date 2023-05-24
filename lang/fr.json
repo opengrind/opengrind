@@ -424,7 +424,7 @@
     "Already registered?": "Déjà enregistré?",
     "A new verification link has been sent to the email address you provided during registration.": "Un nouveau lien de vérification a été envoyé à l'adresse e-mail que vous avez fournie lors de l'inscription.",
     "Are you sure?": "Es-tu sûr?",
-    "Back to home": "De retour à la maison",
+    "Back to home": "Retour à l'accueil",
     "Before getting started, could you click on the link in this email so we can verify your identity?": "Avant de commencer, pourriez-vous cliquer sur le lien contenu dans cet e-mail afin que nous puissions vérifier votre identité ?",
     "Cancel": "Annuler",
     "Changes saved": "Changements sauvegardés",
@@ -449,6 +449,7 @@
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Mot de passe oublié? Aucun problème. Indiquez-nous simplement votre adresse e-mail et nous vous enverrons par e-mail un lien de réinitialisation de mot de passe qui vous permettra d'en choisir un nouveau.",
     "GMT timezone": "Fuseau horaire GMT",
     "Go back": "Retourner",
+    "Hide public profile": "Masquer le profil public",
     "If you didn't receive the email, we will gladly send you another.": "Si vous n'avez pas reçu l'e-mail, nous vous en enverrons un autre avec plaisir.",
     "Indicate that this office is the main office": "Indiquez que ce bureau est le bureau principal",
     "It will host all your company's data.": "Il hébergera toutes les données de votre entreprise.",
@@ -478,6 +479,7 @@
     "Pick a date": "Choisissez une date",
     "Please confirm your email address": "Merci de confirmer votre adresse e-mail",
     "Profile": "Profil",
+    "Profile visibility": "Visibilité du profil",
     "Register": "Enregistrer",
     "Remember me": "Souviens-toi de moi",
     "Resend verification email": "Renvoyer l'e-mail de vérification",
@@ -487,6 +489,7 @@
     "Search results": "Résultats de recherche",
     "Select a timezone": "Sélectionnez un fuseau horaire",
     "Settings": "Paramètres",
+    "Show this profile to the public": "Montrer ce profil au public",
     "Thanks for signing up!": "Merci de vous être enregistré !",
     "The office has been created.": "Le bureau a été créé.",
     "The office has been deleted.": "Le bureau a été supprimé.",
@@ -510,6 +513,6 @@
     "You can have one or more offices, and designate which office is the main office. You can also choose to not have any office at all if you are full remote.": "Vous pouvez avoir un ou plusieurs bureaux et désigner quel bureau est le bureau principal. Vous pouvez également choisir de ne pas avoir de bureau du tout si vous êtes totalement distant.",
     "Your email address is not verified.": "Votre adresse e-mail n'est pas vérifiée.",
     "Your profile": "Votre profil",
-    "Your profile was successfully saved.": "Votre profil a été enregistré avec succès.",
-    "Your user profile": "Votre profil utilisateur"
+    "Your profile can be either public or hidden. If hidden, no one will find it, except for members of an organization you belong to who will be able to view it until you leave the organization.": "Votre profil peut être public ou masqué. S'il est masqué, personne ne le trouvera, à l'exception des membres d'une organisation à laquelle vous appartenez qui pourront le voir jusqu'à ce que vous quittiez l'organisation.",
+    "Your profile was successfully saved.": "Votre profil a été enregistré avec succès."
 }

@@ -2,10 +2,7 @@
 
 namespace App\Http\ViewHelpers\Profile\Settings;
 
-use App\Domains\Settings\ManageSettings\Web\ViewHelpers\SettingsIndexViewHelper;
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\View\View;
 
 class ProfileSettingsViewHelper
 {
@@ -1707,7 +1704,8 @@ class ProfileSettingsViewHelper
             'agePreferences' => $user->age_preferences,
             'timezone' => $user->timezone,
             'timezones' => $timezones,
-            'bornAt' => $user?->born_at->format('Y-m-d'),
+            'bornAt' => $user->born_at?->format('Y-m-d'),
+            'hasPublicProfile' => $user->has_public_profile ? 1 : 0,
         ];
     }
 }

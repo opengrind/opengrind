@@ -85,7 +85,6 @@ class UserTest extends TestCase
         $user = User::factory()->create();
 
         $this->assertNull($user->email);
-
     }
 
     /** @test */

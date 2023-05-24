@@ -7,7 +7,7 @@
   <div class="md:mt-0 md:col-span-2">
     <form wire:submit.prevent="store">
       <div class="max-w-xs mb-4">
-        <x-datetime-picker label="{{ __('Date of birth') }}" placeholder="{{ __('Pick a date')}}" required="true" display-format="DD-MM-YYYY" without-time="true" without-timezone="true" wire:model.defer="bornAt" />
+        <x-datetime-picker label="{{ __('Date of birth') }}" placeholder="{{ __('Pick a date') }}" required="true" display-format="DD-MM-YYYY" without-time="true" without-timezone="true" wire:model.defer="bornAt" />
       </div>
 
       <!-- age option -->

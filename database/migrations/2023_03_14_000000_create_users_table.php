@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('timezone')->default('UTC');
             $table->datetime('born_at')->nullable();
             $table->string('age_preferences')->default(User::AGE_HIDDEN);
+            $table->boolean('has_public_profile')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

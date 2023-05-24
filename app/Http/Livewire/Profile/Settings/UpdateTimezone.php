@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Profile\Settings;
 
-use App\Services\UpdateProfileInformation;
 use App\Services\UpdateUserTimezone;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -13,7 +12,9 @@ class UpdateTimezone extends Component
     use Actions;
 
     public string $timezone = '';
+
     public array $timezones = [];
+
     public ?Carbon $currentTime = null;
 
     public function mount(array $view)

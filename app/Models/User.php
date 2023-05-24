@@ -38,6 +38,7 @@ class User extends Authenticatable
         'timezone',
         'born_at',
         'age_preferences',
+        'has_public_profile',
     ];
 
     /**
@@ -57,6 +58,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'born_at' => 'datetime',
+        'has_public_profile' => 'boolean',
     ];
 
     public function emails(): HasMany
@@ -77,6 +79,13 @@ class User extends Authenticatable
     public function projects(): MorphMany
     {
         return $this->morphMany(Project::class, 'projectable');
+    }
+
+    public function isMemberOfOrganization(Organization $organization): bool
+    {
+        return $this->members()->get()->contains(
+            fn (Member $member) => $member->organization_id === $organization->id
+        );
     }
 
     protected function age(): Attribute
@@ -112,13 +121,6 @@ class User extends Authenticatable
 
                 return $this->primaryEmail->email;
             }
-        );
-    }
-
-    public function isMemberOfOrganization(Organization $organization): bool
-    {
-        return $this->members()->get()->contains(
-            fn (Member $member) => $member->organization_id === $organization->id
         );
     }
 }
