@@ -7,7 +7,15 @@
   <div class=" md:mt-0 md:col-span-2">
     <form wire:submit.prevent="store">
       <div class="w-full max-w-lg mb-4">
-        <x-select label="{{ __('Timezone') }}" placeholder="{{ __('Select a timezone') }}" searchable="true" required="true" option-label="name" option-value="id" :options="$timezones" wire:model.defer="timezone" />
+        <x-select label="{{ __('Timezone') }}"
+          placeholder="{{ __('Select a timezone') }}"
+          searchable="true"
+          required="true"
+          option-label="name"
+          option-value="id"
+          :options="$timezones"
+          wire:model.defer="timezone"
+        />
       </div>
 
       <!-- what the current time is -->
