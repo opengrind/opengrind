@@ -3,7 +3,6 @@
 namespace Tests\Unit\Helpers;
 
 use App\Helpers\AvatarHelper;
-use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 

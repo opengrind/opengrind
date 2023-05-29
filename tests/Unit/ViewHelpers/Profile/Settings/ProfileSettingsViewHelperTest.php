@@ -18,6 +18,7 @@ class ProfileSettingsViewHelperTest extends TestCase
             'first_name' => 'regis',
             'last_name' => 'boudin',
             'username' => 'djaiss',
+            'username_avatar' => 'djaiss',
             'timezone' => 'UTC',
             'locale' => 'en',
             'age_preferences' => User::AGE_HIDDEN,

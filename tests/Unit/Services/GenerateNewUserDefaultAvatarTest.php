@@ -2,12 +2,9 @@
 
 namespace Tests\Unit\Services;
 
-use App\Models\EmailAddress;
 use App\Models\User;
 use App\Services\GenerateNewUserDefaultAvatar;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 

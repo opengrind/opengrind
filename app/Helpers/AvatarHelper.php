@@ -2,9 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Models\User;
 use App\Models\MultiAvatar;
-use Faker\Factory as Faker;
 
 class AvatarHelper
 {

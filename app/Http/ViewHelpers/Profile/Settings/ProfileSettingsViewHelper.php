@@ -1700,7 +1700,6 @@ class ProfileSettingsViewHelper
             'lastName' => $user->last_name,
             'username' => $user->username,
             'avatar' => $user->avatar,
-            'timezone' => $user->timezone,
             'locale' => $user->locale,
             'agePreferences' => $user->age_preferences,
             'timezone' => $user->timezone,

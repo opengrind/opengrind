@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\EmailAddress;
 use App\Models\User;
 
 class SetPrimaryEmailAddress extends BaseService

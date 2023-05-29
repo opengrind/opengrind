@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-Route::get('/users/{user:username}', [UserController::class, 'show'])->name('profile.show');
+Route::get('users/{user:username}', [UserController::class, 'show'])->name('profile.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('welcome', [HomeController::class, 'index'])->name('home.index');
