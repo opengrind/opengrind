@@ -7,8 +7,6 @@ use App\Models\User;
 
 class SetPrimaryEmailAddress extends BaseService
 {
-    private EmailAddress $emailAddress;
-
     /**
      * Get the validation rules that apply to the service.
      */

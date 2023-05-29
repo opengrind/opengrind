@@ -4,6 +4,11 @@
     <livewire:profile.settings.update-profile :view="$view" />
   </div>
 
+  <!-- avatar -->
+  <div class="p-5 border-b border-gray-200">
+    <livewire:profile.settings.update-avatar :view="$view" />
+  </div>
+
   <!-- profile visibility -->
   <div class="p-5 border-b border-gray-200">
     <livewire:profile.settings.update-profile-visibility :view="$view" />

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\AvatarHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,12 +24,20 @@ class User extends Authenticatable
     public const AGE_FULL = 'full';
 
     /**
+     * Possible avatar types.
+     */
+    public const AVATAR_TYPE_SVG = 'svg';
+
+    public const AVATAR_TYPE_URL = 'url';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'username',
+        'username_avatar',
         'primary_email_address_id',
         'slug',
         'first_name',
@@ -120,6 +129,26 @@ class User extends Authenticatable
                 }
 
                 return $this->primaryEmail->email;
+            }
+        );
+    }
+
+    protected function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                $type = self::AVATAR_TYPE_SVG;
+                $content = AvatarHelper::generateRandomAvatar($this->username_avatar);
+
+                // if ($this->file) {
+                //     $type = self::AVATAR_TYPE_URL;
+                //     $content = 'https://ucarecdn.com/' . $this->file->uuid . '/-/scale_crop/300x300/smart/-/format/auto/-/quality/smart_retina/';
+                // }
+
+                return [
+                    'type' => $type,
+                    'content' => $content,
+                ];
             }
         );
     }

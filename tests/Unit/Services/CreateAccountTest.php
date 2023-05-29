@@ -84,6 +84,7 @@ class CreateAccountTest extends TestCase
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
             'username' => 'johnny',
+            'username_avatar' => 'johnny',
             'slug' => 'johnny',
         ]);
 

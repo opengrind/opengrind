@@ -69,6 +69,7 @@ class CreateAccount extends BaseService
     {
         $this->user = User::create([
             'username' => $this->data['username'],
+            'username_avatar' => $this->data['username'],
             'password' => Hash::make($this->data['password']),
             'slug' => $this->slug,
         ]);
