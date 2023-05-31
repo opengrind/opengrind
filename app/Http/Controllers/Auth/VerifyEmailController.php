@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class VerifyEmailController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse
     {
-        $emailAddress = $request->user()->primaryEmail;
+        try {
+            $emailAddress = auth()->user()->emails()->where('id', $request->route('id'))->firstOrFail();
+        } catch (ModelNotFoundException) {
+            return redirect()->route('register.create');
+        }
 
         if (! hash_equals((string) $emailAddress->id, (string) $request->route('id'))) {
             return redirect()->route('register.create');

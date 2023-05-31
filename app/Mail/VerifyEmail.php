@@ -15,12 +15,8 @@ class VerifyEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct(
-        public EmailAddress $emailAddress,
-    ) {
+    public function __construct(public EmailAddress $emailAddress)
+    {
     }
 
     /**

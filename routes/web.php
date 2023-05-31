@@ -14,8 +14,10 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Profile\Settings\ProfileEmailController;
 use App\Http\Controllers\Profile\Settings\ProfileSettingsController;
 use App\Http\Controllers\Profile\Settings\SettingsController;
+use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ApplicationController::class, 'index'])->name('application.index');
@@ -41,11 +43,14 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
+Route::get('users/{user:username}', [UserController::class, 'show'])->name('profile.show');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('welcome', [HomeController::class, 'index'])->name('home.index');
 
     // profile
     Route::get('settings', [ProfileSettingsController::class, 'index'])->name('settings.profile.index');
+    Route::get('settings/emails', [ProfileEmailController::class, 'index'])->name('settings.emails.index');
 
     // Route::get('create-company', [CreateCompanyController::class, 'index'])->name('create_company.index');
     // Route::post('create-company', [CreateCompanyController::class, 'store'])->name('create_company.store');

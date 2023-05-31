@@ -2,11 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Organization;
-use Illuminate\Support\Str;
 use App\Models\User;
-use Exception;
-use Illuminate\Validation\ValidationException;
 
 class UpdateUserTimezone extends BaseService
 {

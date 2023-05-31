@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 
-class UpdateUserDateOfBirth extends BaseService
+class UpdateUserProfileVisibility extends BaseService
 {
     private array $data;
 
@@ -17,21 +17,20 @@ class UpdateUserDateOfBirth extends BaseService
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'born_at' => 'required|date_format:Y-m-d',
-            'age_preferences' => 'required|string',
+            'has_public_profile' => 'required|boolean',
         ];
     }
 
     /**
-     * Update the user's date of birth.
+     * Update the user's visibility.
+     * This is used to determine if the user's profile is public or not.
      */
     public function execute(array $data): User
     {
         $this->data = $data;
         $this->validate();
 
-        $this->user->born_at = $data['born_at'];
-        $this->user->age_preferences = $data['age_preferences'];
+        $this->user->has_public_profile = $data['has_public_profile'];
         $this->user->save();
 
         return $this->user;

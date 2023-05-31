@@ -13,9 +13,6 @@ class AccountCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct()
     {
         //

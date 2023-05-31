@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 
-class UpdateUserDateOfBirth extends BaseService
+class GenerateNewUserDefaultAvatar extends BaseService
 {
     private array $data;
 
@@ -17,21 +17,20 @@ class UpdateUserDateOfBirth extends BaseService
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-            'born_at' => 'required|date_format:Y-m-d',
-            'age_preferences' => 'required|string',
         ];
     }
 
     /**
-     * Update the user's date of birth.
+     * Update the user's default avatar.
+     * The default avatar is based on the username.
+     * This method creates a new random username so the avatar looks different.
      */
     public function execute(array $data): User
     {
         $this->data = $data;
         $this->validate();
 
-        $this->user->born_at = $data['born_at'];
-        $this->user->age_preferences = $data['age_preferences'];
+        $this->user->username_avatar = fake()->name;
         $this->user->save();
 
         return $this->user;

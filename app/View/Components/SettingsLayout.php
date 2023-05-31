@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Domains\Settings\ManageSettings\Web\ViewHelpers\SettingsMenuViewHelper;
 use App\Http\ViewHelpers\Layout\LayoutViewHelper;
 use Illuminate\View\Component;
 use Illuminate\View\View;

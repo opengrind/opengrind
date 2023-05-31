@@ -1,6 +1,6 @@
 <div class="md:grid md:grid-cols-3 md:gap-16">
   <div class="md:col-span-1">
-    <h2 class="text-lg mb-2 font-bold">{{ __('Your user profile') }}</h2>
+    <h2 class="text-lg mb-2 font-bold">{{ __('User profile') }}</h2>
     <p class="text-sm">{{ __('Only your nickname will be visible to everyone. Your name will stay private unless you make it public within an organization – in that case, it will be visible within that organization.') }}</p>
   </div>
 

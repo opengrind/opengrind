@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Arr;
 use App\Models\Account;
 use App\Models\EmailAddress;
 use App\Models\Organization;
@@ -70,6 +69,7 @@ class CreateAccount extends BaseService
     {
         $this->user = User::create([
             'username' => $this->data['username'],
+            'username_avatar' => $this->data['username'],
             'password' => Hash::make($this->data['password']),
             'slug' => $this->slug,
         ]);

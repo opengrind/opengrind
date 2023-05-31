@@ -3,9 +3,8 @@
 namespace App\Services;
 
 use App\Models\Organization;
-use Illuminate\Support\Str;
 use App\Models\User;
-use Exception;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class UpdateProfileInformation extends BaseService

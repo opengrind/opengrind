@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\AvatarHelper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,12 +24,20 @@ class User extends Authenticatable
     public const AGE_FULL = 'full';
 
     /**
+     * Possible avatar types.
+     */
+    public const AVATAR_TYPE_SVG = 'svg';
+
+    public const AVATAR_TYPE_URL = 'url';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'username',
+        'username_avatar',
         'primary_email_address_id',
         'slug',
         'first_name',
@@ -38,6 +47,7 @@ class User extends Authenticatable
         'timezone',
         'born_at',
         'age_preferences',
+        'has_public_profile',
     ];
 
     /**
@@ -57,6 +67,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'born_at' => 'datetime',
+        'has_public_profile' => 'boolean',
     ];
 
     public function emails(): HasMany
@@ -77,6 +88,13 @@ class User extends Authenticatable
     public function projects(): MorphMany
     {
         return $this->morphMany(Project::class, 'projectable');
+    }
+
+    public function isMemberOfOrganization(Organization $organization): bool
+    {
+        return $this->members()->get()->contains(
+            fn (Member $member) => $member->organization_id === $organization->id
+        );
     }
 
     protected function age(): Attribute
@@ -115,10 +133,23 @@ class User extends Authenticatable
         );
     }
 
-    public function isMemberOfOrganization(Organization $organization): bool
+    protected function avatar(): Attribute
     {
-        return $this->members()->get()->contains(
-            fn (Member $member) => $member->organization_id === $organization->id
+        return Attribute::make(
+            get: function ($value) {
+                $type = self::AVATAR_TYPE_SVG;
+                $content = AvatarHelper::generateRandomAvatar($this->username_avatar);
+
+                // if ($this->file) {
+                //     $type = self::AVATAR_TYPE_URL;
+                //     $content = 'https://ucarecdn.com/' . $this->file->uuid . '/-/scale_crop/300x300/smart/-/format/auto/-/quality/smart_retina/';
+                // }
+
+                return [
+                    'type' => $type,
+                    'content' => $content,
+                ];
+            }
         );
     }
 }
