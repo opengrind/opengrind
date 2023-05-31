@@ -18,8 +18,6 @@ class MemberFactory extends Factory
         return [
             'user_id' => User::factory(),
             'organization_id' => Organization::factory(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
         ];
     }
 }

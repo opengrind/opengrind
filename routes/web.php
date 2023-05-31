@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Organizations\OrganizationController;
 use App\Http\Controllers\Profile\Settings\ProfileEmailController;
 use App\Http\Controllers\Profile\Settings\ProfileSettingsController;
 use App\Http\Controllers\Profile\Settings\SettingsController;
@@ -40,13 +41,18 @@ Route::middleware('auth')->group(function () {
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->middleware('throttle:6,1')->name('verification.send');
 
-    Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
 Route::get('users/{user:username}', [UserController::class, 'show'])->name('profile.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('welcome', [HomeController::class, 'index'])->name('home.index');
+
+    // organization
+    Route::get('organizations/new', [OrganizationController::class, 'create'])->name('organization.create');
+    Route::post('organizations', [OrganizationController::class, 'store'])->name('organization.store');
+    Route::get('organizations/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
 
     // profile
     Route::get('settings', [ProfileSettingsController::class, 'index'])->name('settings.profile.index');

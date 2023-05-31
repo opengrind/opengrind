@@ -15,8 +15,6 @@ return new class extends Migration
             $table->unsignedBigInteger('role_id')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->date('joined_at')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
