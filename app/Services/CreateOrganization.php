@@ -8,11 +8,10 @@ use App\Models\Organization;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class CreateOrganization extends BaseService
 {
-    private User $user;
-
     private string $slug;
 
     private array $data;
@@ -41,7 +40,7 @@ class CreateOrganization extends BaseService
 
         $this->checkSlugUniqueness();
         $this->createOrganization();
-        $this->addMember();
+        $this->addFirstMember();
 
         SetupOrganization::dispatch($this->organization, $this->member);
 
@@ -53,11 +52,22 @@ class CreateOrganization extends BaseService
         $this->slug = Str::slug($this->data['name']);
 
         if (Organization::where('slug', $this->slug)->exists()) {
-            throw new Exception(trans_key('This name already exists'));
+            throw ValidationException::withMessages([
+                'name' => __('This name already exists'),
+            ]);
         }
 
         if (User::where('slug', $this->slug)->exists()) {
-            throw new Exception(trans_key('This name already exists'));
+            throw ValidationException::withMessages([
+                'name' => __('This name already exists'),
+            ]);
+        }
+
+        if (in_array($this->slug, config('opengrind.blacklisted'))) {
+
+            throw ValidationException::withMessages([
+                'name' => __('This name already exists'),
+            ]);
         }
     }
 
@@ -71,7 +81,7 @@ class CreateOrganization extends BaseService
         ]);
     }
 
-    private function addMember(): void
+    private function addFirstMember(): void
     {
         $user = User::findOrFail($this->data['user_id']);
 
@@ -80,8 +90,6 @@ class CreateOrganization extends BaseService
             'user_id' => $this->data['user_id'],
             'first_name' => $user?->first_name,
             'last_name' => $user?->last_name,
-            'email' => $user->email,
-            'email_verified_at' => now(),
         ]);
     }
 }

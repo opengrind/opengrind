@@ -23,8 +23,7 @@ class Member extends Model
         'role_id',
         'first_name',
         'last_name',
-        'email',
-        'email_verified_at',
+        'joined_at',
     ];
 
     /**
@@ -33,7 +32,6 @@ class Member extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'joined_at' => 'datetime',
     ];
 

@@ -53,15 +53,15 @@ class CreateAccount extends BaseService
         $this->slug = Str::slug($this->data['username']);
 
         if (Organization::where('slug', $this->slug)->exists()) {
-            throw new Exception(trans_key('This name already exists'));
+            throw new Exception(trans('This name already exists'));
         }
 
         if (User::where('slug', $this->slug)->exists()) {
-            throw new Exception(trans_key('This name already exists'));
+            throw new Exception(trans('This name already exists'));
         }
 
         if (in_array($this->slug, config('opengrind.blacklisted'))) {
-            throw new Exception(trans_key('This name already exists'));
+            throw new Exception(trans('This name already exists'));
         }
     }
 

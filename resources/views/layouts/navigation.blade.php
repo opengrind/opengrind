@@ -21,18 +21,11 @@
 
   <!-- settings -->
   <div class="hidden sm:flex sm:items-center sm:ml-6">
-    <x-dropdown>
-      <x-slot name="trigger">
-        <div class="flex items-center">
-          <x-heroicon-o-cog-8-tooth class="mr-1 inline-block h-4 w-4 cursor-pointer text-gray-600 dark:text-gray-400 sm:h-4 sm:w-4" />
-
-          <span class=" text-sm dark:text-sky-400">{{ __('Settings') }}</span>
-        </div>
-      </x-slot>
-      <x-dropdown.item label="{{ __('Your profile') }}" />
-      <x-dropdown.item href="{{ route('home.index') }}" separator label="{{ __('Settings') }}" />
-      <x-dropdown.item href="{{ route('logout') }}" label="{{ __('Log out') }}" />
-    </x-dropdown>
+    <a href="{{ route('settings.profile.index') }}" class="mr-2"><x-heroicon-o-cog-8-tooth class="mr-1 inline-block h-4 w-4 cursor-pointer text-gray-600 dark:text-gray-400 sm:h-4 sm:w-4" /></a>
+    <form method="POST" action="{{ route('logout') }}">
+      @csrf
+        <x-heroicon-o-arrow-right-on-rectangle onclick="this.closest('form').submit();" class="mr-1 inline-block h-4 w-4 cursor-pointer text-gray-600 dark:text-gray-400 sm:h-4 sm:w-4" />
+    </form>
   </div>
 
   <!-- Hamburger -->
