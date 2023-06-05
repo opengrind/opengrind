@@ -66,7 +66,7 @@ class UpdateRoleTest extends TestCase
         $permission = Permission::factory()->create();
 
         $request = [
-            'author_id' => $member->id,
+            'user_id' => $member->user_id,
             'organization_id' => $organization->id,
             'role_id' => $role->id,
             'label' => 'Dunder',

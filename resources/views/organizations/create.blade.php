@@ -37,7 +37,7 @@
             {{ trans('Back') }}
           </x-button-form>
 
-          <x-button-form class="ml-4">
+          <x-button-form class="ml-4" primary>
             {{ trans('Register') }}
           </x-button-form>
         </div>

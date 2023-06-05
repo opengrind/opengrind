@@ -2,19 +2,13 @@
 
 namespace App\View\Components;
 
-use App\Http\ViewHelpers\Layout\LayoutViewHelper;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class SettingsLayout extends Component
 {
-    /**
-     * Get the view / contents that represents the component.
-     */
     public function render(): View
     {
-        return view('layouts.settings', [
-            'layout' => LayoutViewHelper::data(),
-        ]);
+        return view('layouts.settings');
     }
 }

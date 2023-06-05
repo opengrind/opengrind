@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Exceptions\NotEnoughPermissionException;
 use App\Models\Member;
 use App\Models\Organization;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Permission;
 use Illuminate\Support\Facades\Validator;
 
 abstract class BaseService
@@ -14,9 +14,6 @@ abstract class BaseService
 
     public Organization $organization;
 
-    /**
-     * Get the validation rules that apply to the service.
-     */
     public function rules(): array
     {
         return [];
@@ -25,9 +22,9 @@ abstract class BaseService
     /**
      * Get the permissions that users need to execute the service.
      */
-    public function permissions(): string
+    public function permissions(): array
     {
-        return '';
+        return [];
     }
 
     /**
@@ -37,16 +34,21 @@ abstract class BaseService
     {
         Validator::make($data, $this->rules())->validate();
 
-        if ($this->permissions() !== '') {
-            $this->author = Member::findOrFail($data['author_id']);
-            $this->organization = Organization::findOrFail($data['organization_id']);
-
-            if ($this->author->organization_id !== $data['organization_id']) {
-                throw new ModelNotFoundException();
+        if ($this->permissions() !== []) {
+            if (in_array('user_must_belong_to_organization', $this->permissions())) {
+                $this->validateAuthorBelongsToOrganization($data);
             }
 
-            if (! $this->author->hasTheRightTo($this->permissions())) {
-                throw new NotEnoughPermissionException();
+            if (in_array('author_must_have_the_right_to_edit_organization_information', $this->permissions())) {
+                if (! $this->author->hasTheRightTo(Permission::ORGANIZATION_MANAGE_INFORMATION)) {
+                    throw new NotEnoughPermissionException();
+                }
+            }
+
+            if (in_array('user_must_have_the_right_to_edit_organization_roles', $this->permissions())) {
+                if (! $this->author->hasTheRightTo(Permission::ORGANIZATION_MANAGE_PERMISSIONS)) {
+                    throw new NotEnoughPermissionException();
+                }
             }
         }
 
@@ -60,5 +62,17 @@ abstract class BaseService
         }
 
         return $data[$index] == '' ? null : $data[$index];
+    }
+
+    /**
+     * Validate that the author of the action belongs to the organization.
+     */
+    private function validateAuthorBelongsToOrganization(array $data): void
+    {
+        $this->author = Member::where('organization_id', $data['organization_id'])
+            ->where('user_id', $data['user_id'])
+            ->firstOrFail();
+
+        $this->organization = Organization::findOrFail($data['organization_id']);
     }
 }

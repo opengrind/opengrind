@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Domains\Settings\ManageRoles\Web\ViewHelpers;
+namespace App\Http\ViewHelpers\Organizations\Settings;
 
 use App\Models\Organization;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Support\Collection;
 
-class SettingsRoleIndexViewHelper
+class OrganizationSettingsRoleViewHelper
 {
-    public static function data(Organization $organization): array
+    public static function index(Organization $organization): array
     {
         $roles = $organization->roles()
             ->with('permissions')
@@ -22,6 +22,9 @@ class SettingsRoleIndexViewHelper
         return [
             'roles' => $roles,
             'all_possible_permissions' => $permissions,
+            'organization' => [
+                'id' => $organization->id,
+            ],
         ];
     }
 

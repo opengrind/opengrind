@@ -10,16 +10,19 @@ class CreateRole extends BaseService
     public function rules(): array
     {
         return [
-            'author_id' => 'required|integer|exists:members,id',
+            'user_id' => 'required|integer|exists:users,id',
             'organization_id' => 'required|integer|exists:organizations,id',
             'label' => 'required|string|max:255',
             'permissions' => 'nullable|array',
         ];
     }
 
-    public function permissions(): string
+    public function permissions(): array
     {
-        return Permission::ORGANIZATION_MANAGE_PERMISSIONS;
+        return [
+            'user_must_belong_to_organization',
+            'user_must_have_the_right_to_edit_organization_roles',
+        ];
     }
 
     public function execute(array $data): Role
@@ -27,7 +30,7 @@ class CreateRole extends BaseService
         $this->validateRules($data);
 
         $role = Role::create([
-            'organization_id' => $this->author->organization_id,
+            'organization_id' => $this->organization->id,
             'label' => $data['label'],
         ]);
 

@@ -106,7 +106,7 @@ class UserTest extends TestCase
     public function it_gets_the_avatar(): void
     {
         $user = User::factory()->create([
-            'username' => 'michael',
+            'username_avatar' => 'michael',
         ]);
 
         $this->assertEquals(

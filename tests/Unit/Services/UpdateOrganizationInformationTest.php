@@ -6,21 +6,20 @@ use App\Exceptions\NotEnoughPermissionException;
 use App\Models\Member;
 use App\Models\Organization;
 use App\Models\Permission;
-use App\Models\Role;
-use App\Services\CreateRole;
+use App\Services\UpdateOrganizationInformation;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
-class CreateRoleTest extends TestCase
+class UpdateOrganizationInformationTest extends TestCase
 {
     use DatabaseTransactions;
 
     /** @test */
-    public function it_creates_a_role(): void
+    public function it_updates_the_organization_information(): void
     {
-        $member = $this->createMemberWithPermission(Permission::ORGANIZATION_MANAGE_PERMISSIONS);
+        $member = $this->createMemberWithPermission(Permission::ORGANIZATION_MANAGE_INFORMATION);
 
         $this->executeService($member, $member->organization);
     }
@@ -33,7 +32,7 @@ class CreateRoleTest extends TestCase
         ];
 
         $this->expectException(ValidationException::class);
-        (new CreateRole())->execute($request);
+        (new UpdateOrganizationInformation())->execute($request);
     }
 
     /** @test */
@@ -46,9 +45,9 @@ class CreateRoleTest extends TestCase
     }
 
     /** @test */
-    public function it_fails_if_member_doesnt_belong_to_organization(): void
+    public function it_fails_if_user_doesnt_belong_to_organization(): void
     {
-        $member = $this->createMemberWithPermission(Permission::ORGANIZATION_MANAGE_PERMISSIONS);
+        $member = $this->createMemberWithPermission(Permission::ORGANIZATION_MANAGE_INFORMATION);
         $organization = Organization::factory()->create();
 
         $this->expectException(ModelNotFoundException::class);
@@ -57,35 +56,24 @@ class CreateRoleTest extends TestCase
 
     private function executeService(Member $member, Organization $organization): void
     {
-        $permission = Permission::factory()->create();
-
         $request = [
             'user_id' => $member->user_id,
             'organization_id' => $organization->id,
-            'label' => 'Dunder',
-            'permissions' => [
-                0 => [
-                    'id' => $permission->id,
-                    'active' => true,
-                ],
-            ],
+            'name' => 'Dunder',
+            'description' => null,
         ];
 
-        $role = (new CreateRole())->execute($request);
+        $organization = (new UpdateOrganizationInformation())->execute($request);
 
         $this->assertInstanceOf(
-            Role::class,
-            $role
+            Organization::class,
+            $organization
         );
 
-        $this->assertDatabaseHas('roles', [
-            'id' => $role->id,
-            'label' => 'Dunder',
-        ]);
-
-        $this->assertDatabaseHas('permission_role', [
-            'permission_id' => $permission->id,
-            'role_id' => $role->id,
+        $this->assertDatabaseHas('organizations', [
+            'id' => $organization->id,
+            'name' => 'Dunder',
+            'slug' => 'dunder',
         ]);
     }
 }

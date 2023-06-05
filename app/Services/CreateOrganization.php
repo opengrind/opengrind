@@ -6,7 +6,6 @@ use App\Jobs\SetupOrganization;
 use App\Models\Member;
 use App\Models\Organization;
 use App\Models\User;
-use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -18,9 +17,6 @@ class CreateOrganization extends BaseService
 
     private Member $member;
 
-    /**
-     * Get the validation rules that apply to the service.
-     */
     public function rules(): array
     {
         return [
@@ -64,7 +60,6 @@ class CreateOrganization extends BaseService
         }
 
         if (in_array($this->slug, config('opengrind.blacklisted'))) {
-
             throw ValidationException::withMessages([
                 'name' => __('This name already exists'),
             ]);

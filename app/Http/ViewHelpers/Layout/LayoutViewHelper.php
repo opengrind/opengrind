@@ -2,13 +2,13 @@
 
 namespace App\Http\ViewHelpers\Layout;
 
-use App\Models\User;
+use App\Models\Organization;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 
 class LayoutViewHelper
 {
-    public static function data(): array
+    public static function data(Organization $organization = null): array
     {
         $localesCollection = collect();
         $localesCollection->push([
@@ -22,18 +22,14 @@ class LayoutViewHelper
             'url' => route('locale.update', ['locale' => 'fr']),
         ]);
 
-        // current organization for the logged user
-        $organization = null;
-        // if (auth()->check()) {
-        //     $organization = auth()->user()->organization;
-        // }
-
         return [
             'currentLocale' => App::currentLocale(),
             'locales' => $localesCollection,
             'currentYear' => Carbon::now()->format('Y'),
             'organization' => [
+                'id' => $organization?->id,
                 'name' => $organization?->name,
+                'slug' => $organization?->slug,
             ],
             'url' => [
                 'search' => null,

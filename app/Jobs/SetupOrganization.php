@@ -55,6 +55,11 @@ class SetupOrganization implements ShouldQueue
         // permissions for administrators
         $permissionsTable = [
             [
+                'action' => Permission::ORGANIZATION_MANAGE_INFORMATION,
+                'label_translation_key' => trans_key('Manage organization information'),
+                'active' => true,
+            ],
+            [
                 'action' => Permission::ORGANIZATION_MANAGE_PERMISSIONS,
                 'label_translation_key' => trans_key('Manage organization roles and permissions'),
                 'active' => true,

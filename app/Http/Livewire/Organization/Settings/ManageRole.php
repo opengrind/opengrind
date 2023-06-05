@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Settings\Roles;
+namespace App\Http\Livewire\Organization\Settings;
 
-use App\Domains\Settings\ManageRoles\Services\CreateRole;
-use App\Domains\Settings\ManageRoles\Services\DestroyRole;
-use App\Domains\Settings\ManageRoles\Services\UpdateRole;
-use App\Domains\Settings\ManageRoles\Web\ViewHelpers\SettingsRoleIndexViewHelper;
+use App\Http\ViewHelpers\Organizations\Settings\OrganizationSettingsRoleViewHelper;
 use App\Models\Role;
+use App\Services\CreateRole;
+use App\Services\DestroyRole;
+use App\Services\UpdateRole;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -19,7 +19,9 @@ class ManageRole extends Component
 
     public int $editedRoleId = 0;
 
-    public string $label;
+    public string $roleLabel = '';
+
+    public int $organizationId = 0;
 
     public Collection $roles;
 
@@ -32,17 +34,18 @@ class ManageRole extends Component
         $this->openModal = false;
         $this->roles = $view['roles'];
         $this->allPossiblePermissions = $view['all_possible_permissions'];
+        $this->organizationId = $view['organization']['id'];
     }
 
     public function render()
     {
-        return view('settings.roles.livewire-index');
+        return view('organizations.settings.roles.partials.livewire-index');
     }
 
     public function toggle(): void
     {
-        $this->label = '';
         $this->openModal = ! $this->openModal;
+        $this->roleLabel = '';
 
         if ($this->openModal) {
             $this->emit('focusNameField');
@@ -59,16 +62,18 @@ class ManageRole extends Component
             })->first();
 
             $this->emit('focusNameField');
-            $this->label = $role['name'];
+            $this->roleLabel = $role['label'];
             $this->permissions = $role['permissions'];
         }
     }
 
     public function store(): void
     {
+        dd($this->roleLabel);
         $role = (new CreateRole())->execute([
             'author_id' => auth()->user()->id,
-            'label' => $this->label,
+            'organization_id' => $this->organizationId,
+            'label' => $this->roleLabel,
             'permissions' => $this->allPossiblePermissions->toArray(),
         ]);
 
@@ -77,8 +82,8 @@ class ManageRole extends Component
             $description = __('The role has been created.'),
         );
 
-        $this->roles->push(SettingsRoleIndexViewHelper::role($role));
-        $this->label = '';
+        $this->roles->push(OrganizationSettingsRoleViewHelper::role($role));
+        $this->reset(['roleLabel']);
         $this->toggle();
     }
 
@@ -89,8 +94,9 @@ class ManageRole extends Component
 
         $role = (new UpdateRole())->execute([
             'author_id' => auth()->user()->id,
+            'organization_id' => $this->organizationId,
             'role_id' => $roleId,
-            'label' => $this->label,
+            'label' => $this->roleLabel,
             'permissions' => $this->permissions,
         ]);
 
@@ -103,12 +109,12 @@ class ManageRole extends Component
 
         $this->roles = $this->roles->map(function (array $value, int $key) use ($role) {
             if ($value['id'] === $role->id) {
-                return SettingsRoleIndexViewHelper::role($role);
+                return OrganizationSettingsRoleViewHelper::role($role);
             }
 
             return $value;
         });
-        $this->label = '';
+        $this->roleLabel = '';
     }
 
     public function confirmDestroy(int $roleId): void

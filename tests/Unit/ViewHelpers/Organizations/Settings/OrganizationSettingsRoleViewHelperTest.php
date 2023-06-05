@@ -1,15 +1,15 @@
 <?php
 
-namespace Tests\Unit\Domains\Settings\ManageRoles\Web\ViewHelpers;
+namespace Tests\Unit\ViewHelpers\Organizations\Settings;
 
-use App\Domains\Settings\ManageRoles\Web\ViewHelpers\SettingsRoleIndexViewHelper;
+use App\Http\ViewHelpers\Organizations\Settings\OrganizationSettingsRoleViewHelper;
 use App\Models\Organization;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class SettingsRoleIndexViewHelperTest extends TestCase
+class OrganizationSettingsRoleViewHelperTest extends TestCase
 {
     use DatabaseTransactions;
 
@@ -18,7 +18,7 @@ class SettingsRoleIndexViewHelperTest extends TestCase
     {
         $organization = Organization::factory()->create();
 
-        $viewModel = SettingsRoleIndexViewHelper::data($organization);
+        $viewModel = OrganizationSettingsRoleViewHelper::index($organization);
 
         $this->assertArrayHasKey('roles', $viewModel);
         $this->assertArrayHasKey('all_possible_permissions', $viewModel);
@@ -31,7 +31,7 @@ class SettingsRoleIndexViewHelperTest extends TestCase
             'label' => 'janitor',
         ]);
 
-        $array = SettingsRoleIndexViewHelper::role($role);
+        $array = OrganizationSettingsRoleViewHelper::role($role);
 
         $this->assertArrayHasKey('id', $array);
         $this->assertArrayHasKey('label', $array);
@@ -54,7 +54,7 @@ class SettingsRoleIndexViewHelperTest extends TestCase
             'label_translation_key' => 'janitor',
         ]);
 
-        $array = SettingsRoleIndexViewHelper::permission($permission);
+        $array = OrganizationSettingsRoleViewHelper::permission($permission);
 
         $this->assertEquals(
             [

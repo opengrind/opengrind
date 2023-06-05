@@ -20,6 +20,7 @@ class Organization extends Model
      */
     protected $fillable = [
         'name',
+        'description',
         'slug',
         'invitation_code',
         'is_public',

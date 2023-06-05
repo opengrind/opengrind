@@ -10,9 +10,6 @@ class GenerateNewUserDefaultAvatar extends BaseService
 
     private User $user;
 
-    /**
-     * Get the validation rules that apply to the service.
-     */
     public function rules(): array
     {
         return [

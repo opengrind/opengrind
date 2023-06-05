@@ -5,9 +5,7 @@
       <div class="flex flex-wrap mx-auto bg-white rounded-t-lg top-0 z-30">
         <div class="flex items-center justify-between w-full px-4 py-6 h-8 border-b h-18 border-slate-200">
           <div class="flex items-center justify-start w-[300px] text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2 text-gray-600">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
-            </svg>
+            <x-heroicon-o-arrow-long-left class="w-4 h-4 mr-2 text-gray-600" />
 
             <x-link :route="route('home.index')">{{ __('Back to home') }}</x-link>
           </div>

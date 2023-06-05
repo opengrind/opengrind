@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ValidateCompanyPresence
+class ValidateOrganizationMembership
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,9 @@ class ValidateCompanyPresence
      */
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
-        if (! $request->user()->organization_id) {
+        $organization = $request->route()->parameter('organization');
+
+        if (! $request->user()->isMemberOfOrganization($organization)) {
             return redirect('welcome');
         }
 

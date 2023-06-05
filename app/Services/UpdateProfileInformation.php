@@ -15,9 +15,6 @@ class UpdateProfileInformation extends BaseService
 
     private string $slug;
 
-    /**
-     * Get the validation rules that apply to the service.
-     */
     public function rules(): array
     {
         return [

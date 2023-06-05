@@ -11,9 +11,6 @@ class CreateUserEmailAddress extends BaseService
 {
     private EmailAddress $emailAddress;
 
-    /**
-     * Get the validation rules that apply to the service.
-     */
     public function rules(): array
     {
         return [

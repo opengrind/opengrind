@@ -10,7 +10,7 @@ class UpdateRole extends BaseService
     public function rules(): array
     {
         return [
-            'author_id' => 'required|integer|exists:members,id',
+            'user_id' => 'required|integer|exists:users,id',
             'organization_id' => 'required|integer|exists:organizations,id',
             'role_id' => 'required|integer|exists:roles,id',
             'label' => 'required|string|max:255',
@@ -18,16 +18,19 @@ class UpdateRole extends BaseService
         ];
     }
 
-    public function permissions(): string
+    public function permissions(): array
     {
-        return Permission::ORGANIZATION_MANAGE_PERMISSIONS;
+        return [
+            'user_must_belong_to_organization',
+            'user_must_have_the_right_to_edit_organization_roles',
+        ];
     }
 
     public function execute(array $data): Role
     {
         $this->validateRules($data);
 
-        $role = Role::where('organization_id', $this->author->organization_id)
+        $role = Role::where('organization_id', $this->organization->id)
             ->findOrFail($data['role_id']);
 
         $role->label = $data['label'];

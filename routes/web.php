@@ -2,7 +2,6 @@
 
 use App\Domains\Auth\Web\Controllers\ApplicationController;
 use App\Domains\Search\Web\Controllers\SearchController;
-use App\Domains\Settings\ManageCompany\Web\Controllers\CreateCompanyController;
 use App\Domains\Settings\ManageLocale\Web\Controllers\LocaleController;
 use App\Domains\Settings\ManageOffices\Web\Controllers\SettingsOfficeController;
 use App\Domains\Settings\ManageRoles\Web\Controllers\SettingsRoleController;
@@ -15,6 +14,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Organizations\OrganizationController;
+use App\Http\Controllers\Organizations\Settings\OrganizationSettingsController;
+use App\Http\Controllers\Organizations\Settings\OrganizationSettingsRoleController;
 use App\Http\Controllers\Profile\Settings\ProfileEmailController;
 use App\Http\Controllers\Profile\Settings\ProfileSettingsController;
 use App\Http\Controllers\Profile\Settings\SettingsController;
@@ -44,22 +45,21 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-Route::get('users/{user:username}', [UserController::class, 'show'])->name('profile.show');
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('welcome', [HomeController::class, 'index'])->name('home.index');
 
     // organization
     Route::get('organizations/new', [OrganizationController::class, 'create'])->name('organization.create');
     Route::post('organizations', [OrganizationController::class, 'store'])->name('organization.store');
-    Route::get('organizations/{organization}', [OrganizationController::class, 'show'])->name('organization.show');
 
-    // profile
+    Route::middleware(['organization'])->prefix('organizations/{organization:slug}')->group(function () {
+        Route::get('settings', [OrganizationSettingsController::class, 'index'])->name('organization.settings.index');
+        Route::get('settings/roles', [OrganizationSettingsRoleController::class, 'index'])->name('organization.settings.roles.index');
+    });
+
+    // profile settings
     Route::get('settings', [ProfileSettingsController::class, 'index'])->name('settings.profile.index');
     Route::get('settings/emails', [ProfileEmailController::class, 'index'])->name('settings.emails.index');
-
-    // Route::get('create-company', [CreateCompanyController::class, 'index'])->name('create_company.index');
-    // Route::post('create-company', [CreateCompanyController::class, 'store'])->name('create_company.store');
 
     Route::middleware(['company'])->group(function () {
         //Route::get('home', [HomeController::class, 'index'])->name('home.index');
@@ -73,3 +73,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Route::get('settings/offices', [SettingsOfficeController::class, 'index'])->name('settings.offices.index');
     });
 });
+
+Route::get('users/{user:username}', [UserController::class, 'show'])->name('profile.show');
+Route::get('organizations/{organization:slug}', [OrganizationController::class, 'show'])->name('organization.show');

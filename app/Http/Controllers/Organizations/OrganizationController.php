@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Organizations;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Organization;
 use App\Services\CreateOrganization;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,5 +27,10 @@ class OrganizationController extends Controller
         return redirect()->route('organization.show', [
             'organization' => $organization->slug,
         ]);
+    }
+
+    public function show(Organization $organization): View|RedirectResponse
+    {
+        return view('organizations.create');
     }
 }

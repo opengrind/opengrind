@@ -11,6 +11,8 @@ class Permission extends Model
 {
     use HasFactory, Translatable;
 
+    public const ORGANIZATION_MANAGE_INFORMATION = 'organization.information';
+
     public const ORGANIZATION_MANAGE_PERMISSIONS = 'organization.permissions';
 
     public const ORGANIZATION_MANAGE_PROJECTS = 'organization.projects';

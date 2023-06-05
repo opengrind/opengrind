@@ -28,6 +28,18 @@
   {{ $slot }}
 </span>
 
+@elseif ($attributes->has('primary'))
+<button {{ $attributes->merge(['type' => 'submit', 'class' => 'rounded-md bg-indigo-500 text-white px-3 py-1.5 font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-indigo-600 hover:bg-indigo-700']) }}>
+  @if ($attributes->has('save'))
+  <span class="flex items-center">
+    <x-heroicon-o-plus-small class="icon relative mr-1 inline h-5 w-5" />
+    <span>{{ $slot }}</span>
+  </span>
+  @else
+  {{ $slot }}
+  @endif
+</button>
+
 @else
 <button {{ $attributes->merge(['type' => 'submit', 'class' => 'rounded-md bg-white px-3 py-1.5 font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-100']) }}>
   @if ($attributes->has('save'))

@@ -6,9 +6,6 @@ use App\Models\User;
 
 class SetPrimaryEmailAddress extends BaseService
 {
-    /**
-     * Get the validation rules that apply to the service.
-     */
     public function rules(): array
     {
         return [

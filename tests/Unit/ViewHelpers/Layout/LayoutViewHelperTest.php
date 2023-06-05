@@ -19,13 +19,14 @@ class LayoutViewHelperTest extends TestCase
         Carbon::setTestNow(Carbon::create(2023, 1, 1));
         $organization = Organization::factory()->create([
             'name' => 'Organization name',
+            'slug' => 'organization-name',
         ]);
         $member = Member::factory()->create([
             'organization_id' => $organization->id,
         ]);
         $this->be($member->user);
 
-        $array = LayoutViewHelper::data();
+        $array = LayoutViewHelper::data($organization);
 
         $this->assertEquals(
             5,
@@ -60,12 +61,14 @@ class LayoutViewHelperTest extends TestCase
             2023,
             $array['currentYear']
         );
-        // $this->assertEquals(
-        //     [
-        //         'name' => 'Organization name',
-        //     ],
-        //     $array['organization']
-        // );
+        $this->assertEquals(
+            [
+                'id' => $organization->id,
+                'name' => 'Organization name',
+                'slug' => 'organization-name',
+            ],
+            $array['organization']
+        );
         $this->assertEquals(
             [
                 //'search' => env('APP_URL').'/search',
